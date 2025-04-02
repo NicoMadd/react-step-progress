@@ -4,9 +4,7 @@ import styles from './styles.module.css';
 import { StepStates, ProgressStep, StepProgressProps, ReducerAction } from './models';
 
 function stepsReducer(steps: ProgressStep[], action: ReducerAction): ProgressStep[] {
-
   return steps.map(function (step, i) {
-
     if (i < action.payload.index) {
       step.state = StepStates.COMPLETED;
     } else if (i === action.payload.index) {
@@ -51,7 +49,6 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
   }
 
   function nextHandler(): void {
-
     if (currentIndex === steps.length - 1) {
       return;
     }
@@ -75,7 +72,6 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
   }
 
   function prevHandler(): void {
-
     if (currentIndex === 0) {
       return;
     }
@@ -104,7 +100,7 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
               } ${stepClass || ''}`}
             >
               {step.state === StepStates.COMPLETED && (
-                <span className={styles['step-icon']}>
+                <span className={`${styles['step-icon']} icon-original`}>
                   <svg
                     width="1.5rem"
                     viewBox="0 0 13 9"
@@ -113,6 +109,13 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
                   >
                     <path d="M1 3.5L4.5 7.5L12 1" stroke="white" strokeWidth="1.5" />
                   </svg>
+
+                  {/* Hover Icon */}
+                  {step.hoverIcon && (
+                    <div className="hover-icon" onClick={() => step.onHoverIconClick?.(1)}>
+                      {step.hoverIcon}
+                    </div>
+                  )}
                 </span>
               )}
               {step.state === StepStates.ERROR && <span className={styles['step-icon']}>!</span>}
