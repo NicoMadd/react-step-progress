@@ -97,11 +97,12 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
                 step.state === StepStates.COMPLETED ? ` ${styles.completed}` : ''
               }${step.state === StepStates.CURRENT ? ` ${styles.current}` : ''}${
                 step.state === StepStates.ERROR ? ` ${styles['has-error']}` : ''
-              } ${stepClass || ''}`}
+              } ${step.hoverIcon ? styles.hoverable : ''} ${stepClass || ''}`}
             >
               {step.state === StepStates.COMPLETED && (
-                <span className={`${styles['step-icon']} icon-original`}>
+                <span className={`${styles['step-icon-span']}`}>
                   <svg
+                    className={styles['step-icon']}
                     width="1.5rem"
                     viewBox="0 0 13 9"
                     fill="none"
@@ -109,13 +110,15 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
                   >
                     <path d="M1 3.5L4.5 7.5L12 1" stroke="white" strokeWidth="1.5" />
                   </svg>
-
                   {/* Hover Icon */}
-                  {step.hoverIcon && (
-                    <div className="hover-icon" onClick={() => step.onHoverIconClick?.(1)}>
-                      {step.hoverIcon}
-                    </div>
-                  )}
+                  {step.hoverIcon &&
+                    React.isValidElement(step.hoverIcon) &&
+                    React.cloneElement(step.hoverIcon as JSX.Element, {
+                      className: `${styles['step-icon-hover']} ${step.hoverIconClass || ''}`,
+                      onClick: () => {
+                        step.onHoverIconClick && step.onHoverIconClick(i);
+                      }
+                    })}
                 </span>
               )}
               {step.state === StepStates.ERROR && <span className={styles['step-icon']}>!</span>}
