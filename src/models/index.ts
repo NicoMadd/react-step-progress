@@ -10,8 +10,11 @@ export interface ProgressStep {
   subtitle?: string;
   name: string;
   state?: StepStates;
+  hoverIcon?: JSX.Element;
+  hoverIconClass?: string;
   content: React.ReactNode;
   validator?: (payload?: any) => boolean;
+  onHoverIconClick?: (index: number) => void;
 }
 
 export interface StepProgressProps {

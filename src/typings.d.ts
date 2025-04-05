@@ -29,7 +29,9 @@ interface ProgressStep {
   name: string;
   state?: StepStates;
   content: React.ReactNode;
+  hoverIcon?: React.ReactNode;
   validator?: (payload?: any) => boolean;
+  onHoverIconClick?: (index: number) => void;
 }
 
 interface StepProgressProps {

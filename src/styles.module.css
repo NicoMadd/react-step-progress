@@ -1,7 +1,8 @@
 .progress-bar-wrapper {
   padding: 2rem;
 }
-.progress-bar-wrapper, .progress-bar-wrapper * {
+.progress-bar-wrapper,
+.progress-bar-wrapper * {
   box-sizing: border-box;
 }
 .step-progress-bar {
@@ -31,7 +32,7 @@
   transform: translateY(-50%);
   z-index: -1;
   background: linear-gradient(to left, #e7eaf3 50%, #4db193 50%);
-	background-size: 200% 100%;
+  background-size: 200% 100%;
   background-position: right bottom;
   transition: background-position 200ms ease-in-out;
 }
@@ -39,7 +40,7 @@
   content: none;
 }
 .progress-step .step-index,
-.progress-step .step-icon {
+.progress-step .step-icon-span {
   background-color: #e7eaf3;
   color: var(--text-normal);
   border-radius: 50%;
@@ -51,7 +52,8 @@
   align-items: center;
   justify-content: center;
 }
-.step-index, .step-icon {
+.step-index,
+.step-icon-span {
   transition: background-color 250ms ease;
 }
 .progress-step .step-label {
@@ -64,14 +66,36 @@
 .progress-step .step-label-subtitle {
   display: block;
 }
-.progress-step.completed .step-icon {
+.progress-step.completed .step-icon-span {
   background-color: #4db193;
   color: white;
   animation: spring-down 400ms ease-in-out forwards;
 }
-.progress-step.completed .step-icon:hover {
+.progress-step.completed .step-icon-span:hover {
   background-color: #42997f;
 }
+.progress-step.completed .step-icon-span > * {
+  position: absolute;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.progress-step.completed.hoverable .step-icon-span .step-icon {
+  transform: rotateY(0deg) scale(0.8);
+  opacity: 1;
+}
+.progress-step.completed.hoverable .step-icon-span:hover .step-icon {
+  transform: rotateY(90deg) scale(0.8);
+  opacity: 0;
+}
+.progress-step.completed.hoverable .step-icon-span .step-icon-hover {
+  transform: rotateY(90deg) scale(0.8);
+  opacity: 0;
+}
+.progress-step.completed.hoverable .step-icon-span:hover .step-icon-hover {
+  transform: rotateY(0deg) scale(0.8);
+  opacity: 1;
+}
+
 .progress-step.current .step-index {
   background-color: #387cf6;
   color: white;
@@ -85,7 +109,7 @@
 .progress-step.has-error::before {
   background-position: left bottom;
 }
-.progress-step.has-error .step-icon {
+.progress-step.has-error .step-icon-span {
   color: white;
   background-color: #bb392d;
   animation: shake 350ms ease-in-out forwards;
@@ -129,20 +153,48 @@
 }
 
 @keyframes spring-up {
-  0% { transform: scale(1); }
-  10% { transform: scale(0.975); }
-  40% { transform: scale(1.4); }
-  50%, 100% { transform: scale(1.2); }
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.975);
+  }
+  40% {
+    transform: scale(1.4);
+  }
+  50%,
+  100% {
+    transform: scale(1.2);
+  }
 }
 @keyframes spring-down {
-  0% { transform: scale(1.2); }
-  35%, 100% { transform: scale(1); }
+  0% {
+    transform: scale(1.2);
+  }
+  35%,
+  100% {
+    transform: scale(1);
+  }
 }
 @keyframes shake {
-  0% { transform: translateX(0); }
-  15% { transform: translateX(0.2rem); }
-  30%, 60% { transform: translateX(-0.4rem); }
-  45%, 75% { transform: translateX(0.4rem); }
-  90% { transform: translateX(-0.2rem); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(0.2rem);
+  }
+  30%,
+  60% {
+    transform: translateX(-0.4rem);
+  }
+  45%,
+  75% {
+    transform: translateX(0.4rem);
+  }
+  90% {
+    transform: translateX(-0.2rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
