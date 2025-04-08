@@ -1,5 +1,5 @@
 {
-  "name": "react-step-progress",
+  "name": "@local/react-step-progress",
   "version": "1.0.3",
   "description": "Multi step and dynamic progress indicator for react",
   "keywords": [
