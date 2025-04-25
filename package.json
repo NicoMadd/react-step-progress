@@ -1,6 +1,6 @@
 {
   "name": "@cirve/react-step-progress",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Multi step and dynamic progress indicator for react",
   "keywords": [
     "react",
