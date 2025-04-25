@@ -1,6 +1,6 @@
 {
-  "name": "@local/react-step-progress",
-  "version": "1.0.3",
+  "name": "@cirve/react-step-progress",
+  "version": "1.1.0",
   "description": "Multi step and dynamic progress indicator for react",
   "keywords": [
     "react",
@@ -9,11 +9,11 @@
     "step progress",
     "progress bar"
   ],
-  "author": "saini-g",
+  "author": "NicoMadd",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/saini-g/react-step-progress"
+    "url": "https://github.com/NicoMadd/react-step-progress"
   },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
