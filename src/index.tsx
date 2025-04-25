@@ -32,15 +32,20 @@ function StepProgressBar(props: StepProgressProps): JSX.Element {
     submitBtnName,
     onSubmit,
     previousBtnName,
-    nextBtnName
+    nextBtnName,
+    showLastStepAsCompleted
   } = props;
   const [state, dispatch] = React.useReducer(stepsReducer, steps);
   const [currentIndex, setCurrentIndex] = React.useState(startingStep);
 
   React.useEffect(function () {
+    const showAsCompleted = showLastStepAsCompleted && currentIndex == steps.length - 1;
+
+    const currentStepState = showAsCompleted ? StepStates.COMPLETED : StepStates.CURRENT;
+
     dispatch({
       type: 'init',
-      payload: { index: currentIndex, state: StepStates.CURRENT }
+      payload: { index: currentIndex, state: currentStepState }
     });
   }, []);
 

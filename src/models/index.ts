@@ -33,6 +33,7 @@ export interface StepProgressProps {
   onSubmit: Function;
   previousBtnName?: string;
   nextBtnName?: string;
+  showLastStepAsCompleted?: boolean;
 }
 
 export interface ReducerAction {
